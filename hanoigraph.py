@@ -1,5 +1,5 @@
 from collections import deque
-
+from bfs_function import bfs
 class HanoiConfig:
     def __init__(self, num_disks):
         self.num_disks = num_disks
@@ -24,28 +24,21 @@ class HanoiRootedGraph(HanoiConfig):
                         neighbors.append(new_config)
         return neighbors
 
-    def bfs(self):
-        visited = set()
-        queue = deque([(self.start_state, [])])
+class Toto:
+    def __init__(self, hanoi_graph):
+        self.hanoi_graph = hanoi_graph
 
-        while queue:
-            current_config, path = queue.popleft()
-            if current_config == self.end_state:
-                return path + [current_config]
+    def bfs(self, query):
+        return bfs(self.hanoi_graph, query)
 
-            config_tuple = tuple(map(tuple, current_config))  # Convertir en tuple pour les sets
-            if config_tuple not in visited:
-                visited.add(config_tuple)
-                for neighbor in self.get_neighbors(current_config):
-                    neighbor_tuple = tuple(map(tuple, neighbor))  # Convertir en tuple pour les sets
-                    if neighbor_tuple not in visited:
-                        queue.append((neighbor, path + [current_config]))
-        return None
 
-# Example usage:
+# Utilisation des classes
 num_disks = 3
-hanoi = HanoiRootedGraph(num_disks)
-solution = hanoi.bfs()
+hanoi_graph = HanoiRootedGraph(num_disks)
+toto = Toto(hanoi_graph)
+
+is_solution = lambda state: state == hanoi_graph.end_state
+solution = toto.bfs(is_solution)
 if solution:
     print(f"Found solution in {len(solution) - 1} moves:")
     for step in solution:
