@@ -29,7 +29,7 @@ class GraphSearcher:
         self.hanoi_graph = hanoi_graph
         # Initialisation des attributs roots et graph à partir de hanoi_graph
         self.roots = hanoi_graph.start_state
-        self.graph = hanoi_graph  # Si hanoi_graph a une structure de graphe
+        self.graph = hanoi_graph
 
     def bfs(self, query):
         return bfs(self.hanoi_graph, query)
