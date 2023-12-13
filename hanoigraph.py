@@ -24,7 +24,7 @@ class HanoiRootedGraph(HanoiConfig):
                         neighbors.append(new_config)
         return neighbors
 
-class Toto:
+class GraphSearcher:
     def __init__(self, hanoi_graph):
         self.hanoi_graph = hanoi_graph
 
@@ -35,7 +35,7 @@ class Toto:
 # Utilisation des classes
 num_disks = 3
 hanoi_graph = HanoiRootedGraph(num_disks)
-toto = Toto(hanoi_graph)
+toto = GraphSearcher(hanoi_graph)
 
 is_solution = lambda state: state == hanoi_graph.end_state
 solution = toto.bfs(is_solution)
