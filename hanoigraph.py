@@ -27,10 +27,18 @@ class HanoiRootedGraph(HanoiConfig):
 class GraphSearcher:
     def __init__(self, hanoi_graph):
         self.hanoi_graph = hanoi_graph
+        # Initialisation des attributs roots et graph à partir de hanoi_graph
+        self.roots = hanoi_graph.start_state
+        self.graph = hanoi_graph  # Si hanoi_graph a une structure de graphe
 
     def bfs(self, query):
         return bfs(self.hanoi_graph, query)
 
+    def get_roots(self):
+        return self.roots
+
+    def get_neighbors(self, node):
+        return self.graph.get_neighbors(node)
 
 # Utilisation des classes
 num_disks = 3
