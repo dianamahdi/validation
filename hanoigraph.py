@@ -27,9 +27,7 @@ class HanoiRootedGraph(HanoiConfig):
 class GraphSearcher:
     def __init__(self, hanoi_graph):
         self.hanoi_graph = hanoi_graph
-        # Initialisation des attributs roots et graph à partir de hanoi_graph
         self.roots = hanoi_graph.start_state
-        self.graph = hanoi_graph
 
     def bfs(self, query):
         return bfs(self.hanoi_graph, query)
