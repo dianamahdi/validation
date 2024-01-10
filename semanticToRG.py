@@ -16,8 +16,7 @@ class AliceBob(rg):
     def __init__(self):
         self.alice={}
         self.bob={}
-
-        self.
+#a continuer
 
 
 class Semantic_to_RG:
