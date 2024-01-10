@@ -1,18 +1,21 @@
-class Traceur():
+from RootedGraph import RootedGraph
+
+
+class Traceur(RootedGraph):
     def __init__(self, rg):
         self.operande = rg
-        self.parents={}
+        self.parents = {}
 
-    def get_roots(self):
-        roots = self.operande.get_roots()
-        for r in roots :
+    def roots(self):
+        roots = self.operande.roots()
+        for r in roots:
             self.parents[r] = []
         return roots
 
-    def get_neighbors(self, node):
-        neighbors = self.operande.get_neighbors(node)
-        for n in neighbors :
-            if n not in self.parents :
+    def neighbors(self, node):
+        neighbors = self.operande.neighbors(node)
+        for n in neighbors:
+            if n not in self.parents:
                 self.parents[n] = [node]
         return neighbors
 
@@ -21,7 +24,11 @@ class Traceur():
         current = node
         while current is not None:
             trace.append(current)
-            current = self.parents.get(current)
+            parents = self.parents.get(current)
+            if len(parents) > 0:
+                current = parents[0]
+            else:
+                current = None
         return trace[::-1]
 
 

@@ -1,6 +1,7 @@
 # bfs_function.py
 from collections import deque
 
+
 def bfs(rg, query):
     visited = set()
     queue = deque([(rg.start_state, [])])
