@@ -1,32 +1,55 @@
-from Semantic import *
-import copy
-
+from typing import List
+from Semantic import Semantic
+from Semantic2RG import SemanticToRG
 
 class SoupConfiguration:
-    def _hash_(self) -> int:
+    def __hash__(self) -> int:
         pass
 
-    def _eq_(self, __value: object) -> bool:
+    def __eq__(self, other: object) -> bool:
         pass
 
-    def _repr_(self) -> str:
+    def __repr__(self) -> str:
         pass
 
-    class Piece:
-        def _init_(self, name, guard, action):
-            self.name = name
-            self.guard = guard
-            self.action = action
 
-        def execute(self, config):
-            return [self.action(config)]
+class Piece:
+    def __init__(self, name, guard, action):
+        self.name = name
+        self.guard = guard
+        self.action = action
 
-    class SoupSemantics(Semantic):
-        def _init_(self, spec):
-            self.spec = spec
+    def enabled(self, config):
+        return self.guard(config)
 
-        def initial(self):
-            return self.spec.initial()
+    def execute(self, config):
+        return [self.action(config)]
+
+
+class SoupSpec:
+    def initial(self) -> List[SoupConfiguration]:
+        return []
+
+    def pieces(self) -> List[Piece]:
+        return []
+
+    def enabledPieces(self, config: SoupConfiguration) -> List[Piece]:
+        return list(filter(lambda p: p.enabled(config), self.pieces()))
+
+
+class SoupSemantics(Semantic):
+    def __init__(self, spec):
+        super().__init__()
+        self.spec = spec
+
+    def initial(self):
+        return self.spec.initial()
+
+
+
+
+
+
 
 
 
