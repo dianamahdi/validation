@@ -23,11 +23,6 @@ def aliceBob():
     instanceConfCount = aliceBobConfig()
     soup = Behavior_Soup(instanceConfCount)
 
-    # def aliceBobToInit(c):
-    #     c.apc = 0
-    #     c.bpc = 0
-
-    # soup.add("aliceBobToInit", lambda c: c.apc < maxi, aliceBobToInit)
 
     def aToSc(c):
         c.apc = 1
@@ -50,11 +45,5 @@ def aliceBob():
 
     soup.add("bToInit", lambda c: c.bpc == 1, bToInit)
 
-
-    # def aliceBobToSc(c):
-    #     c.apc = 1
-    #     c.bpc = 1
-
-    # soup.add("aliceBobToSc", lambda c: c.apc + c.bpc == maxi, aliceBobToSc)
 
     return soup
