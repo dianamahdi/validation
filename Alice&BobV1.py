@@ -1,7 +1,7 @@
 from Algorithms import bfs
 from Semantic import Semantic
 from Semantic2RG import SemanticToRG
-from traceur import Traceur
+from ParentTraceur import Traceur
 
 
 class AliceBobCoordinator(Semantic):

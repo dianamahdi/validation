@@ -1,78 +1,52 @@
-from typing import List
+from abc import ABC
+import copy
 from Semantic import Semantic
-from Semantic2RG import SemanticToRG
 
-class SoupConfiguration:
-    def __hash__(self) -> int:
+class SoupConfiguration(ABC):
+    def __hash__(self):
         pass
 
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self, other):
         pass
 
-    def __repr__(self) -> str:
+    def __str__(self):
         pass
-
 
 class Piece:
-    def __init__(self, name, guard, action):
-        self.name = name
-        self.guard = guard
+    def __init__(self, nom, garde, action):
+        self.nom = nom
+        self.garde = garde
         self.action = action
 
-    def enabled(self, config):
-        return self.guard(config)
-
-    def execute(self, config):
-        return [self.action(config)]
-
+    def enabled(self, c):
+        return self.garde(c)
 class SoupSpec:
-    def __init__(self, initialConfigs: List[SoupConfiguration], pieces: List[Piece]):
-            self.configs = initialConfigs
-            self.pieces = pieces
 
-    def enabledPieces(self, config: SoupConfiguration) -> List[Piece]:
-            return list(filter(lambda p: p.enabled(config), self.pieces))
+    def __init__(self, initials, pieces):
+        self.initials = initials  # list de SoupConfiguration
+        self.pieces_list = pieces  # liste de pieces
+
+    def initial(self):  # list de SoupConfiguration
+        return self.initials
+
+    def pieces(self):  # liste de pieces
+        return self.pieces_list
+
+    def enabledPieces(self, c):
+        filtered_pieces = list(filter(lambda p: p.enabled(c), self.pieces_list))
+        return filtered_pieces
 
 
 class SoupSemantics(Semantic):
     def __init__(self, spec):
-        super().__init__()
         self.spec = spec
 
     def initial(self):
         return self.spec.initial()
 
-    def actions(self, config: SoupConfiguration):
-        self.spec.enabledPieces(config)
+    def actions(self, config):
+        return self.spec.enabledPieces(config)
 
-    def execute(self, action, config):
-        return action.execute(config)
-
-
-class OBCConfig(SoupConfiguration):
-    def __init__(self, init_clock: int):
-        self.clock = init_clock
-
-    def __hash__(self):
-        return hash(self.clock)
-
-    def __repr__(self):
-        return f"OBCConfig(clock={self.clock})"
-
-
-if __name__ == "__main__":
-    p1 = Piece("p1", lambda x: 1 != 0, lambda x: print("p1"))
-    p2 = Piece("p2", lambda x: 1 != 0, lambda x: print("p2"))
-    soup = SoupSpec([OBCConfig(0)], [p1, p2])
-    soup_sem = SoupSemantics(soup)
-    s = SemanticToRG(soup_sem)
-
-
-
-
-
-
-
-
-
-
+    def execute(self, piece, config):
+        to_target = copy.deepcopy(config)
+        return [piece.action(to_target)]
