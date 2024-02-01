@@ -1,3 +1,6 @@
+#Main au-dessous de chaque fichier pour tester chaque fichier seul !
+#Ce main etait juste pour le debut!
+
 #Ce code met en œuvre une classe SimpleGraph pour représenter un graphe non orienté.
 #Un graphe non orienté est constitué de nœuds (ou sommets) et d'arêtes qui relient ces nœuds.
 #La classe offre une méthode de parcours en largeur (bfs pour "Breadth-First Search"),
