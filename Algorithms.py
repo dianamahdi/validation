@@ -5,7 +5,6 @@ def bfs(rg, query):
     visited = set()
     queue = deque()
     i = True
-
     while i or len(queue) > 0:
         if i:
             neighbors = rg.roots()
@@ -21,7 +20,26 @@ def bfs(rg, query):
                 visited.add(neighbor)
     return None, visited
 
-from collections import deque
+
+def find_cycle(graph, initial, end):
+    visited = []
+    queue = deque()
+    init = True
+    while len(queue) != 0 or init:
+        if init:
+            voisin = initial
+            init = False
+        else:
+            node = queue.popleft()
+            voisin = graph.next(node)
+        for n in voisin:
+            if n not in visited:
+                if n == end:
+                    return True
+                queue.append(n)
+                visited.append(n)
+    return False
+
 
 def bfs2(rg, query):
     visited = set()

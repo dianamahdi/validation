@@ -23,13 +23,13 @@ class Piece:
 class SoupSpec:
 
     def __init__(self, initials, pieces):
-        self.initials = initials  # list de SoupConfiguration
-        self.pieces_list = pieces  # liste de pieces
+        self.initials = initials
+        self.pieces_list = pieces
 
-    def initial(self):  # list de SoupConfiguration
+    def initial(self):
         return self.initials
 
-    def pieces(self):  # liste de pieces
+    def pieces(self):
         return self.pieces_list
 
     def enabledPieces(self, c):
