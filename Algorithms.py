@@ -43,12 +43,12 @@ def find_cycle(graph, initial, end):
 def bfs_safe(rg):
     visited = set()
     queue = deque()
-    at_start = True
+    start = True
 
-    while at_start or len(queue) > 0:
-        if at_start:
+    while start or len(queue) > 0:
+        if start:
             neighbors = [rg.initial()]
-            at_start = False
+            start = False
         else:
             current = queue.popleft()
             neighbors = rg.next(current)
