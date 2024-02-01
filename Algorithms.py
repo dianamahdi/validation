@@ -67,7 +67,6 @@ def bfs_safe(rg):
 
 
 #Test
-# Sample graph represented as an adjacency list
 class Graph:
     def __init__(self):
         self.graph = {
