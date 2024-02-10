@@ -1,4 +1,4 @@
-#Main au-dessous de chaque fichier pour tester chaque fichier seul !
+#Main au-dessous de chaque fichier .PY pour tester chaque fichier seul !
 #Ce main etait juste pour le debut!
 
 #Ce code met en œuvre une classe SimpleGraph pour représenter un graphe non orienté.

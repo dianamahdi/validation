@@ -1,7 +1,7 @@
 from Algorithms import bfs
 from Semantic import Semantic
 from Semantic2RG import SemanticToRG
-from ParentTraceur import Traceur
+from ParentTraceur import ParentTraceur
 
 
 class AliceBobCoordinator(Semantic):
@@ -46,7 +46,7 @@ class AliceBobCoordinator(Semantic):
 if __name__ == '__main__':
     coordinator = AliceBobCoordinator()
     rg = SemanticToRG(coordinator)
-    traceur = Traceur(rg)
+    traceur = ParentTraceur(rg)
     # w = witness
     w, k = bfs(traceur, lambda n: n[0] == "Alice_critical" and n[1] == "Bob_critical")
     trace = traceur.get_trace(w)

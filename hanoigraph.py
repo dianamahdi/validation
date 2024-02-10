@@ -1,5 +1,4 @@
-from collections import deque
-from bfs_function import bfs
+from Algorithms import bfs
 class HanoiConfig:
     def __init__(self, num_disks):
         self.num_disks = num_disks

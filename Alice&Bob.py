@@ -1,7 +1,7 @@
 from Algorithms import bfs
 from Semantic import Semantic
 from Semantic2RG import SemanticToRG
-from ParentTraceur import Traceur
+from ParentTraceur import ParentTraceur
 
 
 class GardenDilemma(Semantic):
@@ -42,7 +42,7 @@ class GardenDilemma(Semantic):
 if __name__ == '__main__':
     dilemma = GardenDilemma()
     rg = SemanticToRG(dilemma)
-    traceur = Traceur(rg)
+    traceur = ParentTraceur(rg)
     # w = witness
     w, k = bfs(traceur, lambda n: n[0] == "Alice_inCritical" and n[1] == "Bob_inCritical")
     trace = traceur.get_trace(w)
